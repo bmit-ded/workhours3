@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<meta http-equiv="refresh" content="2;url=/projects" />
+<title>Registration Success</title>
+<style type="text/css">
+    span {
+        display: inline-block;
+        width: 200px;
+        text-align: left;
+    }
+</style>
+</head>
+<body>
+<div align="center">
+    <h2>Registration Succeeded!</h2>
+    <span>Name</span><span th:text="${projects.name}"></span><br/>
+     <span>Worktime</span><span th:text="${projects.worktime}"></span><br/>
+    
+    Please wait..
+
+</div>
+</body>
+</html>

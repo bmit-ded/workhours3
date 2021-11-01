@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Update</title>
+</head>
+<body>
+<div align="center">
+    <h1>User update</h1>
+    
+    <form action="#" th:action="@{/updateProjectfinal}" method="post" th:object="${project}">
+    <tr th:each="project : ${projects}">
+    <input type="hidden" name="id" value="id" th:value="${project.id}" />
+    <p>Projectname</p>
+    <input type="text" name="projectname" value="projectname" th:value="${project.name}" />
+    <select name= "worktime" th:field="*{worktime}">
+    	<option th:value="1" th:text="Yes" ></option>
+   	 <option th:value="0" th:text="No"></option>
+	</select>
+   
+    <br>
+    <br>
+     <button type="submit">Update Project</button>   
+      </form>
+      
+      <a href="/projects">Back</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,12 @@
+  <form action="#" th:action="@{/userSelect}" method="post" th:object="${user}">
+         <select>
+        <option value="">Select User</option>
+        <option th:each="user : ${users}"
+                th:value="${user.id}"
+                th:text="${user.firstname}+' '+${user.lastname}"></option>
+    </select>
+        <button type="submit">Show Entries</button>    
+    </form>
+  
+  
+</div>

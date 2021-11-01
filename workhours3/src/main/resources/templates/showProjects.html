@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Thymeleaf</title>
+  </head>
+  <body>
+  <div align="center">
+  <h1>New Project Registration</h1>
+    <form action="#" th:action="@{/registerProject}" method="post" th:object="${project}">
+        <label>Name</label>
+        <input type="text" name= "projectname" th:field="*{name}" /><br/>
+        <label>Worktime</label>
+        <select name= "worktime" th:field="*{worktime}">
+    	<option th:value="1" th:text="Yes"></option>
+   	 <option th:value="0" th:text="No"></option>
+	</select>
+       <br/><br/>
+
+
+        <button type="submit">Add Project</button>    
+    </form>
+  <br>
+	<table>
+	   <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Worktime</th>
+  </tr>
+   <tr th:if="${projects.empty}">
+            <td colspan="2"> No Projects Available </td>
+        </tr>
+    <tr th:each="project : ${projects}">
+    		<td><span th:text="${project.id}"> ID </span></td>
+            <td><span th:text="${project.name}"> Name </span></td>
+            <td><th:block th:if="${project.worktime eq 1}">Yes</th:block>
+    		<th:block th:unless="${project.worktime eq 1}">No</th:block></td>
+
+            <td><a th:href="@{/deleteProject(id=${project.id})}">Delete Project</a></td>
+            <td><a th:href="@{/updateProject(id=${project.id})}">Update Project</a></td>
+        </tr>
+        </table>
+ <br><br>
+        <a href="/">Back</a>
+  </body>
+  
+  
+</html>

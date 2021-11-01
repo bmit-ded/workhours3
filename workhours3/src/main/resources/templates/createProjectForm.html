@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>New Project Registration</title>
+</head>
+<body>
+<div align="center">
+    <h1>New Project Registration</h1>
+    <form action="#" th:action="@{/registerProject}" method="post" th:object="${project}">
+        <label>Name</label>
+        <input type="text" name= "projectname" th:field="*{name}" /><br/>
+	<select name= "worktime" th:field="*{worktime}">
+    	<option th:value="1" th:text="Yes"></option>
+   	 <option th:value="0" th:text="No"></option>
+	</select>
+
+        <button type="submit">Add Project</button>    
+    </form>
+</div>
+</body>
+</html>

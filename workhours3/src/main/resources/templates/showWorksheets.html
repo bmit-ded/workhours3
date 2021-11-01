@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Thymeleaf</title>
+  </head>
+  <body>
+  <div align="center">
+    <h1>Add Worksheet</h1>
+    <form action="#" th:action="@{/registerWorksheet}" method="post" th:object="${worksheet}">
+   
+    <label>User</label>
+    <select class="form-control" th:name= "userValue">
+    <option value="0">Select User</option>
+    <option th:each="user : ${users}"  th:value="${user.id}" th:text="${user.firstname} + ' ' + ${user.lastname}"></option>
+    </select>
+    <br>
+
+     <br><br>
+        <button type="submit">Add Worksheet</button>    
+    </form>
+    
+  
+	<table>
+	   <tr>
+    <th>Worksheet ID</th>
+    <th>Firstname</th>
+    <th>Lastname</th>
+  </tr>
+   <tr th:if="${worksheets.empty}">
+            <td colspan="2"> No Worksheets Available </td>
+        </tr>
+    <tr th:each="worksheet : ${worksheets}">
+    		<td><span th:text="${worksheet.id}"> ID </span></td>      
+             <td><span th:text="${worksheet.firstname}"> Fristname </span></td>
+             <td><span th:text="${worksheet.lastname}"> Lastname </span></td>  
+               <td><a th:href="@{/updateWorksheet(id=${worksheet.id})}">Update Worksheet</a></td>
+            <td><a th:href="@{/deleteWorksheet(id=${worksheet.id})}">Delete Worksheet</a></td> 
+        </tr>
+       
+        </table>
+         <br><br>
+        <a href="/">Back</a>
+  </body>
+  
+  
+</html>

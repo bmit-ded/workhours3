@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Update</title>
+</head>
+<body>
+<div align="center">
+    <h1>Entry update</h1>
+    
+    <form action="#" th:action="@{/updateEntryfinal}" method="post" th:object="${entries}">
+	    <tr th:each="entry : ${entries}">
+		    <input type="hidden" name="id" value="id" th:value="${entry.id}"/>
+		    <p>Date</p>
+		    <input type="date" name="date" value="date" th:value="${entry.date}"/>
+		    <p>Hours</p>
+		 	<input type="text" name="hours" value="hours" th:value="${entry.hours}"/>
+		 	<p>Project</p>
+		 	 <select class="form-control" th:name= "projectValue">
+    		<option th:each="project : ${projects}"  th:value="${project.id}" th:text="${project.name}"></option></select>
+			<br>
+		    <p>Worksheet</p>
+		    <select class="form-control" th:name= "worksheetValue">
+		    <option th:each="worksheet : ${worksheets}"  th:value="${worksheet.id}" th:text="${worksheet.firstname} + ' ' + ${worksheet.lastname}" th:selected="${worksheet.id == entry.worksheet}"></option>
+		    </select>
+			
+		  	
+		    <br>
+		    <br>
+		     <button type="submit">Update Project</button>   
+      </form>
+   
+      <a href="/userSelect">Back</a>
+</div>
+</body>
+</html>

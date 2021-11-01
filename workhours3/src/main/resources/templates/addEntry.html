@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>User Registration</title>
+</head>
+<body>
+<div align="center">
+    <h1>User Registration</h1>
+    <form action="#" th:action="@{/addEntry}" method="post" th:object="${entry}">
+    
+       <select>
+        <option value="">Select User</option>
+        <option th:each="user : ${users}"
+                th:value="${user.id}"
+                th:text="${user.firstname}+' '+${user.lastname}"></option>
+    </select>
+    
+    <input type="date" id="date">
+</div>
+        <label>Hours</label>
+        <input type="text" name= "hours" th:field="*{hours}" /><br/>
+        
+ 
+          <select>
+        <option value="">Select Project</option>
+        <option th:each="project : ${projects}"
+                th:value="${project.id}"
+                th:text="${project.id}+' : '+${project.name}"></option>
+    </select>
+</div>
+ 	
+ 
+
+ 
+        <button type="submit">Add User</button>    
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Thymeleaf</title>
+  </head>
+  <body>
+  
+  <!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Thymeleaf</title>
+  </head>
+  <body>
+  
+  <div align="center">
+    <h1>Add Entry</h1>
+    <form action="#" th:action="@{/registerEntry}" method="post" th:object="${entry}">
+    <label>Hours</label>
+    <input type="text" name= "hours" th:field="*{hours}" /><br/>
+    <label>Date</label>
+    <input type="date" name= "date" th:field="*{date}" /><br/>
+   
+    <label>Project</label>
+    <select class="form-control" th:name= "projectValue">
+    <option value="0">Select project</option>
+    <option th:each="project : ${projects}"  th:value="${project.id}" th:text="${project.name}"></option>
+    </select>
+    <br>
+    <label>Worksheet</label>
+    <select class="form-control" th:name= "worksheetValue">
+    <option value="0">Select worksheet</option>
+    <option th:each="worksheet : ${worksheets}"  th:value="${worksheet.id}" th:text="${worksheet.firstname} + ' ' + ${worksheet.lastname}"></option>
+    </select>
+
+     <br><br>
+        <button type="submit">Add Entry</button>    
+    </form>
+    
+         <div>
+    
+</div>
+  
+	<table>
+	     <tr>
+    <th>ID</th>
+    <th>Date</th>
+    <th>Hours</th>
+    <th>Project</th>
+    <th>Worksheet</th>
+    <th>Worktime</th>
+  </tr>
+   <tr th:if="${entries.empty}">
+            <td colspan="2"> No Entries Available </td>
+        </tr>
+    <tr th:each="entry : ${entries}">
+    		<td><span th:text="${entry.id}"> ID </span></td>
+            <td><span th:text="${entry.date}"> Date </span></td>
+            <td><span th:text="${entry.hours}"> Hours </span></td>
+            <td><span th:text="${entry.projectname}"> Projectname </span></td>
+            <td><span th:text="${entry.worksheet}"> Worksheet </span></td>
+            <td><th:block th:if="${entry.worktime eq 1}">Yes</th:block>
+    		<th:block th:unless="${entry.worktime eq 1}">No</th:block></td>
+            
+            <td><a th:href="@{/updateEntry(id=${entry.id})}">Update Entry</a></td>
+            <td><a th:href="@{/deleteEntry(id=${entry.id})}">Delete Entry</a></td>
+            
+        </tr>
+        </table>
+        
+        <br><br>
+        <a href="/">Back</a>
+  </body>
+  
+  
+</html>

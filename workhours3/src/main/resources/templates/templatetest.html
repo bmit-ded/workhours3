@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Thymeleaf</title>
+  </head>
+  <body>
+  
+  <div align="center">
+    <h1>User Registration</h1>
+    <form action="#" th:action="@{/register}" method="post" th:object="${user}">
+        <label>Firstname</label>
+        <input type="text" name= "firstname" th:field="*{firstname}" /><br/>
+ 
+        <label>Lastname</label>
+        <input type="text" name= "lastname" th:field="*{lastname}" /><br/>
+
+ <br>
+        <button type="submit">Add User</button>    
+    </form>
+  
+	<table>
+   <tr th:if="${users.empty}">
+            <td colspan="2"> No Users Available </td>
+        </tr>
+        <h1> Current Users</h1>
+          <tr>
+    <th>ID</th>
+    <th>Firstname</th>
+    <th>Lastname</th>
+  </tr>
+    <tr th:each="user : ${users}">
+    		<td><span th:text="${user.id}"> ID </span></td>
+            <td><span th:text="${user.firstname}"> firstname </span></td>
+            <td><span th:text="${user.lastname}"> lastname </span></td>
+            <td><a th:href="@{/deleteUser(id=${user.id})}">Delete User</a></td>
+            <td><a th:href="@{/updateUser(id=${user.id})}">Update User</a></td>
+        </tr>
+        </table>
+        <br><br>
+        <a href="/">Back</a>
+        
+  </body>
+  
+  
+</html>
